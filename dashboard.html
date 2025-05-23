@@ -33,50 +33,58 @@
   </style>
 </head>
 <body>
-  <!-- Navbar placeholder -->
-  <div id="navbar-container"></div>
-  <noscript>
-    <!-- Minimal fallback nav if JS is disabled -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
-          <img src="logo.png" alt="NBDAC Rental Logo" width="30" height="30" />
-          RENTAL @ NBDAC
-        </a>
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Rental Workspace</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Document</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="technicaldocumentation.html">Technical Documentation</a></li>
-              <li><a class="dropdown-item" href="report2024.html">Report 2024</a></li>
-              <li><a class="dropdown-item" href="report2025.html">Report 2025</a></li>
+  <div class="wrapper">
+    <div class="content">
+      <!-- Navbar placeholder -->
+      <div id="navbar-container"></div>
+      <noscript>
+        <!-- Minimal fallback nav if JS is disabled -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+              <img src="logo.png" alt="NBDAC Rental Logo" width="30" height="30" />
+              RENTAL @ NBDAC
+            </a>
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="index.html">Rental Workspace</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Document</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="technicaldocumentation.html">Technical Documentation</a></li>
+                  <li><a class="dropdown-item" href="report2024.html">Report 2024</a></li>
+                  <li><a class="dropdown-item" href="report2025.html">Report 2025</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="newsletter.html">NewsLetter</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a></li>
             </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="newsletter.html">NewsLetter</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a></li>
-        </ul>
-      </div>
-    </nav>
-  </noscript>
+          </div>
+        </nav>
+      </noscript>
 
-  <main class="container" style="padding-top: 5rem;">
-    <h1>Dashboard</h1>
-    <p>This is the Rental Report Dashboard for 2024. If it fails to load, <a href="https://app.powerbi.com/view?r=eyJrIjoiZWQyMWE1ZTMtODYxZi00MDk4LTliMjMtMGU4ZjYzOTk4YTNjIiwidCI6IjM3M2U5MGQyLWQ5YTMtNDNiNS04MzJlLWM4ZTk4NDdhNzlmOCIsImMiOjEwfQ%3D%3D" target="_blank">open it in a new tab</a>.</p>
+      <main class="container" style="padding-top: 5rem;">
+        <h1>Dashboard</h1>
+        <p>This is the Rental Report Dashboard for 2024. If it fails to load, <a href="https://app.powerbi.com/view?r=eyJrIjoiZWQyMWE1ZTMtODYxZi00MDk4LTliMjMtMGU4ZjYzOTk4YTNjIiwidCI6IjM3M2U5MGQyLWQ5YTMtNDNiNS04MzJlLWM4ZTk4NDdhNzlmOCIsImMiOjEwfQ%3D%3D" target="_blank">open it in a new tab</a>.</p>
 
-    <iframe
-      width="100%"
-      height="800"
-      src="https://app.powerbi.com/view?r=eyJrIjoiZWQyMWE1ZTMtODYxZi00MDk4LTliMjMtMGU4ZjYzOTk4YTNjIiwidCI6IjM3M2U5MGQyLWQ5YTMtNDNiNS04MzJlLWM4ZTk4NDdhNzlmOCIsImMiOjEwfQ%3D%3D"
-      frameborder="0"
-      allowFullScreen="true"
-      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-    ></iframe>
-  </main>
+        <iframe
+          width="100%"
+          height="800"
+          src="https://app.powerbi.com/view?r=eyJrIjoiZWQyMWE1ZTMtODYxZi00MDk4LTliMjMtMGU4ZjYzOTk4YTNjIiwidCI6IjM3M2U5MGQyLWQ5YTMtNDNiNS04MzJlLWM4ZTk4NDdhNzlmOCIsImMiOjEwfQ%3D%3D"
+          frameborder="0"
+          allowFullScreen="true"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        ></iframe>
+      </main>
+    </div>
 
-  <!-- load navbar and mark active link -->
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
+  </div>
+
+  <!-- load navbar and footer -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Load navbar
       fetch('./navbar.html')
         .then(res => {
           if (!res.ok) throw new Error('Navbar fetch failed: ' + res.status);
@@ -97,6 +105,38 @@
         .catch(err => {
           console.error(err);
           // optionally inject a simple fallback
+        });
+
+      // Load footer
+      fetch('./footer.html')
+        .then(res => {
+          if (!res.ok) throw new Error('Footer fetch failed: ' + res.status);
+          return res.text();
+        })
+        .then(html => {
+          document.getElementById('footer-container').innerHTML = html;
+        })
+        .catch(err => {
+          console.error('Footer loading failed:', err);
+          // Fallback footer if fetch fails
+          document.getElementById('footer-container').innerHTML = `
+            <footer class="bg-dark text-white py-4 mt-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <h6 class="mb-3">Disclaimer</h6>
+                    <p class="mb-2 small">
+                      This rental portal is provided for informational purposes only. All rental information is subject to change without notice. 
+                      NBDAC does not guarantee the accuracy, completeness, or timeliness of the information provided.
+                    </p>
+                    <p class="mb-0 small text-muted">
+                      © 2025 NBDAC. All rights reserved. | Last updated: May 2025
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          `;
         });
     });
   </script>

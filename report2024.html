@@ -32,27 +32,35 @@
   </style>
 </head>
 <body>
-  <div id="navbar-container"></div>
-  <noscript>
-    <!-- fallback nav here -->
-  </noscript>
+  <div class="wrapper">
+    <div class="content">
+      <div id="navbar-container"></div>
+      <noscript>
+        <!-- fallback nav here -->
+      </noscript>
 
-  <main class="container" style="padding-top:5rem;">
-    <h1>2024 Rental Analysis Report</h1>
-    <p>
-      If your browser can’t display the PDF,
-      <a href="doc/Laporan Rental 2024.pdf" target="_blank">download it here</a>.
-    </p>
-    <embed
-      src="doc/Laporan Rental 2024.pdf"
-      type="application/pdf"
-      width="100%"
-      height="800px"
-    />
-  </main>
+      <main class="container" style="padding-top:5rem;">
+        <h1>2024 Rental Analysis Report</h1>
+        <p>
+          If your browser can't display the PDF,
+          <a href="doc/Laporan Rental 2024.pdf" target="_blank">download it here</a>.
+        </p>
+        <embed
+          src="doc/Laporan Rental 2024.pdf"
+          type="application/pdf"
+          width="100%"
+          height="800px"
+        />
+      </main>
+    </div>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Load navbar
       fetch('./navbar.html')
         .then(res => {
           if (!res.ok) throw new Error(`Navbar fetch failed: ${res.status}`);
@@ -75,13 +83,40 @@
           document.getElementById('navbar-container').innerHTML =
             '<nav><!-- basic fallback links --></nav>';
         });
+
+      // Load footer
+      fetch('./footer.html')
+        .then(res => {
+          if (!res.ok) throw new Error('Footer fetch failed: ' + res.status);
+          return res.text();
+        })
+        .then(html => {
+          document.getElementById('footer-container').innerHTML = html;
+        })
+        .catch(err => {
+          console.error('Footer loading failed:', err);
+          // Fallback footer if fetch fails
+          document.getElementById('footer-container').innerHTML = `
+            <footer class="bg-dark text-white py-4 mt-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <h6 class="mb-3">Disclaimer</h6>
+                    <p class="mb-2 small">
+                      This rental portal is provided for informational purposes only. All rental information is subject to change without notice. 
+                      NBDAC does not guarantee the accuracy, completeness, or timeliness of the information provided.
+                    </p>
+                    <p class="mb-0 small text-muted">
+                      © 2025 NBDAC. All rights reserved. | Last updated: May 2025
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          `;
+        });
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.x/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        fetch('navbar.html')
-        .then(res => res.text())
-        .then(data => document.getElementById('navbar-container').innerHTML = data);
-    </script>
 </body>
 </html>
