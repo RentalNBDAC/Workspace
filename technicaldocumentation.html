@@ -9,26 +9,26 @@
     rel="stylesheet"
   >
   <style>
-  iframe {
+    iframe {
       width: 100%;
       height: 80vh;
       border: none;
-  }
-  
-  /* Ensure footer stays at bottom */
-  html, body {
+    }
+
+    /* Ensure footer stays at bottom */
+    html, body {
       height: 100%;
-  }
-  
-  .wrapper {
+    }
+
+    .wrapper {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-  }
-  
-  .content {
+    }
+
+    .content {
       flex: 1;
-  }
+    }
   </style>
 </head>
 <body>
@@ -42,16 +42,19 @@
       <main class="container" style="padding-top:5rem;">
         <h1>Technical Documentation</h1>
         <p>
-          This is a Work In Progress,
-          If your browser can't display the PDF,
-          <a href="doc/example.pdf" target="_blank">download it here</a>.
+          This is a Work In Progress.
+          If your browser can’t display the Doc, you can
+          <a href="https://docs.google.com/document/d/e/2PACX-1vTw7hW5XlWBz8MpcecbTdvPEIzf1vP4pkSMQJXnrhinKRh5TS1Wu5BHtO9FRYb5teQ3cGaYvtKmqQgD/pub" target="_blank">open it in a new tab</a>.
         </p>
-        <embed
-          src="doc/example.pdf"
-          type="application/pdf"
+
+        <!-- BEGIN Google Doc Embed -->
+        <iframe
+          src="https://docs.google.com/document/d/e/2PACX-1vTw7hW5XlWBz8MpcecbTdvPEIzf1vP4pkSMQJXnrhinKRh5TS1Wu5BHtO9FRYb5teQ3cGaYvtKmqQgD/pub?embedded=true"
           width="100%"
           height="800px"
-        />
+        ></iframe>
+        <!-- END Google Doc Embed -->
+
       </main>
     </div>
 
