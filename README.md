@@ -1,4 +1,11 @@
-# Workspace
-Github Repo for the Workspace of Rental Project
 
-https://rentalnbdac.github.io/Workspace/
+  # Project Booking System Interface
+
+  This is a code bundle for Project Booking System Interface. The original project is available at https://www.figma.com/design/ClPM1edGurRmFA6DsJewYO/Project-Booking-System-Interface.
+
+  ## Running the code
+
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  
