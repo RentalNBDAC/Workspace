@@ -8,8 +8,23 @@
     </head>
 
     <body>
+      <div id="navbar-container"></div>
+      
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
+      
+      <div id="footer-container"></div>
     </body>
+    <script>
+        fetch('navbar.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('navbar-container').innerHTML = data);
+    
+
+        //load footer
+        fetch('footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer-container').innerHTML =data);
+    </script>
   </html>
   
